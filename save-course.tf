@@ -30,9 +30,9 @@ resource "aws_iam_role_policy" "lambda_save_course_policy" {
         Resource = "arn:aws:logs:*:*:*"
       },
       {
-        Effect = "Allow",
-        Action = ["dynamodb:PutItem"],
-        Resource : aws_dynamodb_table.courses.arn
+        Effect   = "Allow",
+        Action   = ["dynamodb:PutItem"],
+        Resource = aws_dynamodb_table.courses.arn
       }
     ]
   })
@@ -40,8 +40,8 @@ resource "aws_iam_role_policy" "lambda_save_course_policy" {
 
 data "archive_file" "lambda_save_course_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda/save-course.js"
-  output_path = "${path.module}/lambda/save-course.zip"
+  source_file = "${path.module}/lambda/save-course.mjs"
+  output_path = "${path.module}/lambda/save-course.mjs.zip"
 }
 
 resource "aws_lambda_function" "save_course" {

@@ -30,9 +30,9 @@ resource "aws_iam_role_policy" "lambda_delete_course_policy" {
         Resource = "arn:aws:logs:*:*:*"
       },
       {
-        Effect = "Allow",
-        Action = ["dynamodb:DeleteItem"],
-        Resource : aws_dynamodb_table.courses.arn
+        Effect   = "Allow",
+        Action   = ["dynamodb:DeleteItem"],
+        Resource = aws_dynamodb_table.courses.arn
       }
     ]
   })
@@ -40,8 +40,8 @@ resource "aws_iam_role_policy" "lambda_delete_course_policy" {
 
 data "archive_file" "lambda_delete_course_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda/delete-course.js"
-  output_path = "${path.module}/lambda/delete-course.zip"
+  source_file = "${path.module}/lambda/delete-course.mjs"
+  output_path = "${path.module}/lambda/delete-course.mjs.zip"
 }
 
 resource "aws_lambda_function" "delete_course" {

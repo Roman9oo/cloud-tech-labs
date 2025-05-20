@@ -30,9 +30,9 @@ resource "aws_iam_role_policy" "lambda_get_all_authors_policy" {
         Resource = "arn:aws:logs:*:*:*"
       },
       {
-        Effect = "Allow",
-        Action = ["dynamodb:Scan"],
-        Resource : aws_dynamodb_table.authors.arn
+        Effect   = "Allow",
+        Action   = ["dynamodb:Scan"],
+        Resource = aws_dynamodb_table.authors.arn
       }
     ]
   })
@@ -40,9 +40,10 @@ resource "aws_iam_role_policy" "lambda_get_all_authors_policy" {
 
 data "archive_file" "lambda_get_all_authors_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda/get-all-authors.js"
-  output_path = "${path.module}/lambda/get-all-authors.zip"
+  source_file = "${path.module}/lambda/get-all-authors.mjs"
+  output_path = "${path.module}/lambda/get-all-authors.mjs.zip"
 }
+
 
 resource "aws_lambda_function" "get_all_authors" {
   function_name    = "get-all-authors"

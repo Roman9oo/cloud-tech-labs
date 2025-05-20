@@ -30,9 +30,9 @@ resource "aws_iam_role_policy" "lambda_get_course_policy" {
         Resource = "arn:aws:logs:*:*:*"
       },
       {
-        Effect = "Allow",
-        Action = ["dynamodb:GetItem"],
-        Resource : aws_dynamodb_table.courses.arn
+        Effect   = "Allow",
+        Action   = ["dynamodb:GetItem"],
+        Resource = aws_dynamodb_table.courses.arn
       }
     ]
   })
@@ -40,8 +40,8 @@ resource "aws_iam_role_policy" "lambda_get_course_policy" {
 
 data "archive_file" "lambda_get_course_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda/get-course.js"
-  output_path = "${path.module}/lambda/get-course.zip"
+  source_file = "${path.module}/lambda/get-course.mjs"
+  output_path = "${path.module}/lambda/get-course.mjs.zip"
 }
 
 resource "aws_lambda_function" "get_course" {
