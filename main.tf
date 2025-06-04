@@ -9,6 +9,11 @@ terraform {
 provider "aws" {
   region = "eu-central-1"
 }
+provider "aws" {
+  alias  = "billing"
+  region = "us-east-1"
+}
+
 
 module "label_authors" {
   source    = "cloudposse/label/null"
